@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ShipsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('/ships', ShipsController::class);
+
 Route::get('/', function () {
     return view('index');
+});
+
+Route::get('/overview', function(){
+   return view('overview');
 });
