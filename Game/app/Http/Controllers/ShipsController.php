@@ -43,12 +43,6 @@ class ShipsController extends Controller
      */
     public function store(Request $request)
     {
-//        $ship = new Ship;
-//        $ship->name = $request->input('name');
-//        $ship->faction = $request->input('faction');
-//        $ship->laid_down = $request->input('laid_down');
-//        $ship->greeting = $request->input('greeting');
-//        $ship->save();
 
         $ship = Ship::create([
             'name' => $request->input('name'),
