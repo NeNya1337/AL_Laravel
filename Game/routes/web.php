@@ -14,12 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/ships', ShipsController::class);
+Route::resource('/ships', ShipsController::class)->middleware(['auth'])->name('', 'ships');
 
 Route::get('/', function () {
     return view('index');
-});
+})->middleware(['auth'])->name('index');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::get('/overview', function(){
-   return view('overview');
-});
+    return view('overview');
+})->middleware(['auth'])->name('overview');;
+require __DIR__.'/auth.php';
