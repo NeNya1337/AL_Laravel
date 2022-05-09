@@ -9,5 +9,5 @@ class UserShip extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['ship_id', 'level'];
+    protected $fillable = ['ship_id', 'level', 'user_id'];
 }

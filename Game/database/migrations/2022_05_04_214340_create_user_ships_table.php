@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('user_ships', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('ship_id');
+            $table->unsignedBigInteger('ship_id');
             $table->foreign('ship_id')->references('id')->on('ships');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->integer('level');
             $table->timestamps();
         });

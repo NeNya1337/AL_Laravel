@@ -10,7 +10,7 @@
         </div>
     </div>
 
-    <div class="w-5/6 py-10">
+    <div class="m-auto w-5/6 py-10">
         <div class="m-auto">
             <div class="float-right">
                 <div class="inline-block">

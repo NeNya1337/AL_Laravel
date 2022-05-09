@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\UserShip;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class UserShipsController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +14,11 @@ class UserShipsController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
+//        dd($user);
+        //
+        return view('users.index')->with('user', $user);
 
-        $ships = DB::table('ships')
-                ->join('user_ships', 'ships.id', '=', 'user_ships.ship_id')
-                ->where('user_ships.user_id', auth()->user()->id)
-                ->get();
-        return view('userships.index', ['ships' => $ships]);
     }
 
     /**
@@ -31,8 +28,7 @@ class UserShipsController extends Controller
      */
     public function create()
     {
-        //TODO is this needed?
-        return redirect('/userships');
+        //
     }
 
     /**
@@ -43,13 +39,7 @@ class UserShipsController extends Controller
      */
     public function store(Request $request)
     {
-        $ship = UserShip::create([
-            'ship_id' => $request->input('id'),
-            'user_id' => auth()->user()->id,
-            'level' => 0
-        ]);
-
-        return redirect('/userships');
+        //
     }
 
     /**
@@ -60,15 +50,7 @@ class UserShipsController extends Controller
      */
     public function show($id)
     {
-
-        $ship = DB::table('user_ships')
-            ->where('user_ships.id', $id)
-            ->where('user_id', auth()->user()->id)
-            ->join('ships', 'ships.id', '=', 'user_ships.ship_id')
-            ->get()->first();
-        //dd($ship);
-        //TODO properly
-        return view('userships.show')->with('ship', $ship);
+        //
     }
 
     /**
@@ -79,7 +61,7 @@ class UserShipsController extends Controller
      */
     public function edit($id)
     {
-        //TODO
+        //
     }
 
     /**
@@ -91,7 +73,7 @@ class UserShipsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //TODO
+        //
     }
 
     /**
@@ -102,6 +84,6 @@ class UserShipsController extends Controller
      */
     public function destroy($id)
     {
-        //TODO
+        //
     }
 }

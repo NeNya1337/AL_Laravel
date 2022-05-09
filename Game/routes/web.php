@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ShipsController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\UserShipsController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/ships', ShipsController::class)->middleware(['auth'])->name('', 'ships');
-Route::resource('/user', ShipsController::class)->middleware(['auth'])->name('', 'user');
+Route::resource('/user', UsersController::class)->middleware(['auth'])->name('', 'user');
 Route::resource('/userships', UserShipsController::class)->middleware(['auth'])->name('', 'userships');
 
 
@@ -26,6 +27,8 @@ Route::get('/', function () {
 })->middleware(['auth'])->name('index');
 
 Route::get('/starters', [Controller::class, 'starters'])->middleware(['auth'])->name('starters');
+
+Route::post('/level', [Controller::class, 'level'])->middleware(['auth'])->name('level');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

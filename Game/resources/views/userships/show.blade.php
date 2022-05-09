@@ -10,14 +10,14 @@
         </div>
     </div>
 
-    <div class="w-5/6 py-10">
+    <div class="m-auto w-5/6 py-10">
         <div class="m-auto">
             <div class="float-right">
                 <div class="inline-block">
-                    <a href="/ships" class="border-b-2 pb-2 border-dotted italic text-gray-600">
+                    <a href="/userships" class="border-b-2 pb-2 border-dotted italic text-gray-600">
                         &larr; Back
                     </a>
-                    <a href="/ships/{{ $ship->id }}/edit" class="border-b-2 pb-2 border-dotted italic text-green-500">
+                    <a href="/userships/{{ $ship->id }}/edit" class="border-b-2 pb-2 border-dotted italic text-green-500">
                         Edit &rarr;
                     </a>
                 </div>
@@ -28,6 +28,9 @@
             <h2 class="text-gray-700 text-5xl">
                 {{ $ship->faction.' '.$ship->name }}
             </h2>
+            <p class="text-lg text-gray-700 py-6">
+                Level {{ $ship->level }}
+            </p>
             <p class="text-lg text-gray-700 py-6">
                 {{ $ship->greeting }}
             </p>
