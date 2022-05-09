@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ship;
+use App\Models\UserShip;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class ShipsController extends Controller
+class UserShipsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,16 +15,12 @@ class ShipsController extends Controller
      */
     public function index()
     {
-        $ships = Ship::all();
-        //dd($ships);
+        $ships = DB::table('user_ships')
+            ->join('ships', 'ships.id', '=', 'user_ships.ship_id')
+            ->get();
 
-        foreach ($ships as $ship){
-            $date = $ship->getAttributes();
-            //dd($date);
-        }
-        return view('ships.index', ['ships' => $ships]);
+        return view('userships.index', ['ships' => $ships]);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -32,7 +29,7 @@ class ShipsController extends Controller
      */
     public function create()
     {
-        return view('ships.create');
+        return redirect('/userships');
     }
 
     /**
@@ -43,16 +40,12 @@ class ShipsController extends Controller
      */
     public function store(Request $request)
     {
-
-        $ship = Ship::create([
-            'name' => $request->input('name'),
-            'faction' => $request->input('faction'),
-            'laid_down' => $request->input('laid_down'),
-            'greeting' => $request->input('greeting')
+        $ship = UserShip::create([
+            'ship_id' => $request->input('id'),
+            'level' => 0
         ]);
 
-        return redirect('/ships');
-
+        return redirect('/userships');
     }
 
     /**
@@ -63,9 +56,13 @@ class ShipsController extends Controller
      */
     public function show($id)
     {
-        $ship =  Ship::where('id', $id)->first();
+
+        $ship = DB::table('user_ships')
+            ->where('user_ships.id', $id)
+            ->join('ships', 'ships.id', '=', 'user_ships.ship_id')
+            ->get()->first();
         dd($ship);
-        return view('ships.show')->with('ship', $ship);
+        return view('userships.show')->with('ship', $ship);
     }
 
     /**
@@ -76,10 +73,7 @@ class ShipsController extends Controller
      */
     public function edit($id)
     {
-
-        $ship =  Ship::where('id', $id)->first();
-        dd($ship);
-        return view('ships.edit')->with('ship', $ship);
+        //
     }
 
     /**
@@ -91,14 +85,7 @@ class ShipsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $ship = Ship::where('id', $id)->update([
-            'name' => $request->input('name'),
-            'faction' => $request->input('faction'),
-            'laid_down' => $request->input('laid_down'),
-            'greeting' => $request->input('greeting')
-        ]);
-
-        return redirect('/ships');
+        //
     }
 
     /**
@@ -109,11 +96,6 @@ class ShipsController extends Controller
      */
     public function destroy($id)
     {
-        $ship =  Ship::where('id', $id)->first();
-        $ship->delete();
-
-        return redirect('/ships');
+        //
     }
-
-
 }
