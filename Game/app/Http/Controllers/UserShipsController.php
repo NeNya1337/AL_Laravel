@@ -29,6 +29,7 @@ class UserShipsController extends Controller
      */
     public function create()
     {
+        //TODO is this needed?
         return redirect('/userships');
     }
 
@@ -62,6 +63,7 @@ class UserShipsController extends Controller
             ->join('ships', 'ships.id', '=', 'user_ships.ship_id')
             ->get()->first();
         dd($ship);
+        //TODO properly
         return view('userships.show')->with('ship', $ship);
     }
 
@@ -73,7 +75,7 @@ class UserShipsController extends Controller
      */
     public function edit($id)
     {
-        //
+        //TODO
     }
 
     /**
@@ -85,7 +87,7 @@ class UserShipsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //TODO
     }
 
     /**
@@ -96,6 +98,6 @@ class UserShipsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //TODO
     }
 }
